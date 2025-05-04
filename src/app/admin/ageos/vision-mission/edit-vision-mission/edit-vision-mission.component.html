@@ -1,0 +1,23 @@
+<div *ngIf="page == 'mission'">
+  <div class="row">
+    <div class="card center blue-grey white-text">
+      <h5>Modifier Mission</h5>
+    </div>
+  </div>
+  <app-form-vision-mission
+    [page]="page"
+    [mission]="mission"
+  ></app-form-vision-mission>
+</div>
+
+<div *ngIf="page == 'vision'">
+  <div class="row">
+    <div class="card center blue-grey white-text">
+      <h5>Modifier Vision</h5>
+    </div>
+  </div>
+  <app-form-vision-mission
+    [page]="page"
+    [vision]="vision"
+  ></app-form-vision-mission>
+</div>

@@ -1,0 +1,326 @@
+<nav class="navbar-fixed">
+  <div class="nav-wrapper">
+    <div class="container">
+      <a href="#" class="brand-logo">
+        <img src="../../../assets/images/Logo-AGEOS2.png" alt="Logo AGEOS" />
+      </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+        ><i class="material-icons">menu</i></a
+      >
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li *ngFor="let menu of menus">
+          <ng-container *ngIf="menu.submenus.length === 0">
+            <a [href]="menu.slug">
+              @if (!isEnglish || isBlank(menu.label_eng)) {
+              <b>{{ menu.label }}</b>
+              } @if(isEnglish && !isBlank(menu.label_eng) ) {
+              <b>{{ menu.label_eng }}</b>
+              }
+            </a>
+          </ng-container>
+
+          <!-- Dropdown for submenus -->
+          <ng-container *ngIf="menu.submenus.length > 0">
+            <a
+              class="dropdown-trigger large-screen"
+              [attr.data-target]="'dropdown-' + menu.slug"
+            >
+              @if (!isEnglish || isBlank(menu.label_eng)) {
+              <b>{{ menu.label }}</b>
+              } @if(isEnglish && !isBlank(menu.label_eng) ) {
+              <b>{{ menu.label_eng }}</b>
+              }
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+
+            <!-- Submenu items -->
+            <ul id="{{ 'dropdown-' + menu.slug }}" class="dropdown-content">
+              <li *ngFor="let submenu of menu.submenus">
+                <a
+                  [href]="'service/' + submenu.slug"
+                  *ngIf="menu.label == 'Nos activités'"
+                >
+                  @if (!isEnglish || isBlank(submenu.label_eng)) {
+                  <b>{{ submenu.label }}</b>
+                  } @if(isEnglish && !isBlank(submenu.label_eng) ) {
+                  <b>{{ submenu.label_eng }}</b>
+                  }
+                </a>
+                <a [href]="submenu.slug" *ngIf="menu.label != 'Nos activités'">
+                  @if (!isEnglish || isBlank(submenu.label_eng)) {
+                  <b>{{ submenu.label }}</b>
+                  } @if(isEnglish && !isBlank(submenu.label_eng) ) {
+                  <b>{{ submenu.label_eng }}</b>
+                  }</a
+                >
+              </li>
+            </ul>
+          </ng-container>
+        </li>
+        <li>
+          <div
+            class="input-field language-select"
+            style="margin-right: -200px; margin-left: 100px"
+          >
+            <select id="language-select" (change)="language($event)">
+              <option
+                value="fr"
+                [selected]="!isEnglish"
+                data-icon="https://flagcdn.com/w40/fr.png"
+              >
+                FR
+              </option>
+              <option
+                value="en"
+                [selected]="isEnglish"
+                data-icon="https://flagcdn.com/w40/us.png"
+              >
+                EN
+              </option>
+            </select>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="#">Accueil</a></li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownAgeos"
+      >AGEOS<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownService"
+      >Services<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownProjet"
+      >Projets<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownMediatheque"
+      >Mediatheque<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+<!-- Dropdown for Languages -->
+<ul id="dropdownLanguage" class="dropdown-content">
+  <li *ngFor="let item of languages">
+    <a href="#!"
+      ><img class="lang-logo" [src]="item.flag" alt="" /> {{ item.name }}</a
+    >
+  </li>
+</ul>
+<!-- Carousel -->
+<div class="carousel carousel-slider center" *ngIf="banners.length != 0">
+  <div class="carousel-fixed-item center">
+    <!-- <a class="btn waves-effect green lighten-1 white-text darken-text-2"
+      >Plus d'info...</a
+    > -->
+  </div>
+  <div
+    class="carousel-item white-text red"
+    href="#one!"
+    *ngFor="let banner of banners"
+  >
+    <img [src]="imageUrl + banner.image" alt="Sample Image" />
+    <div class="carousel-caption">
+      @if (!isEnglish || isBlank(banner.title_eng)) {
+      <h2>{{ banner.title }}</h2>
+      <p class="white-text" [innerHTML]="banner.subtitle"></p>
+      } @if(isEnglish && !isBlank(banner.title_eng) ) {
+      <h2>{{ banner.title_eng }}</h2>
+      <p class="white-text" [innerHTML]="banner.subtitle_eng"></p>
+      }
+    </div>
+  </div>
+</div>
+
+<main>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="news-updates-card">
+          <div class="card-content">
+            @if (!isEnglish) {
+            <p class="card-title">Actualités et événements</p>
+            } @if(isEnglish) {
+            <p class="card-title">News and events</p>
+            }
+
+            <div class="slider white" style="height: 600px !important">
+              <ul class="slides white">
+                <li *ngFor="let newsGroup of newsGroups">
+                  <div class="row">
+                    <div
+                      class="col s12 m3 partner"
+                      *ngFor="let news of newsGroup"
+                    >
+                      <div class="card news-card">
+                        <div
+                          class="card-image"
+                          *ngFor="let mainImage of news.images"
+                        >
+                          <img
+                            *ngIf="mainImage.is_main"
+                            [src]="imageUrl + mainImage.image"
+                            alt=""
+                          />
+                        </div>
+                        <div class="card-content">
+                          <p class="date-event">
+                            {{ news.start_date | date : "dd MMM, yyyy" }} -
+                            {{ news.end_date | date : "dd MMM, yyyy" }}
+                          </p>
+                          <p class="title-event truncate-lines-news">
+                            @if (!isEnglish || isBlank(news.title_eng)) {
+                            <b>{{ news.title }}</b>
+                            } @if(isEnglish && !isBlank(news.title_eng) ) {
+                            <b>{{ news.title_eng }}</b>
+                            }
+                          </p>
+                          <br />
+                          <button
+                            class="centered btn-small green darken-4"
+                            href="#"
+                            (click)="moveToNewsContent(news)"
+                          >
+                            @if (!isEnglish) { Lire plus... } @else { Read
+                            more... }
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <img [src]="imageUrl + partner.logo" alt=""> Slider image -->
+                </li>
+              </ul>
+            </div>
+
+            <div class="row white" style="padding-bottom: 10px">
+              <div class="col s12 m12">
+                <div class="carousel-fixed-item center">
+                  <a
+                    class="btn waves-effect green darken-4 white-text darken-text-2"
+                    (click)="moveToNews()"
+                    >@if (!isEnglish) { Plus d'actualités } @else { More news
+                    }</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col s12 m4" *ngFor="let activity of mainActivities">
+        <div class="card main-card">
+          <div class="card-image">
+            <img [src]="imageUrl + activity.image" />
+          </div>
+          <div class="card-content">
+            <span class="card-title">
+              @if (!isEnglish || isBlank(activity.label_eng)) {
+              <b>{{ activity.label }}</b>
+              } @if(isEnglish && !isBlank(activity.label_eng) ) {
+              <b>{{ activity.label_eng }}</b>
+              }
+            </span>
+            <a
+              class="btn-floating btn-large halfway-fab waves-effect waves-light green lighten-1"
+              ><i class="material-icons">add</i></a
+            >
+            <p class="truncate-lines">
+              @if (!isEnglish || isBlank(activity.description_eng)) {
+              <b>{{ activity.description }}</b>
+              } @if(isEnglish && !isBlank(activity.description_eng) ) {
+              <b>{{ activity.description_eng }}</b>
+              }
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="container-fluid">
+        <div class="row">
+            <div class="col s12 m12">
+              <div class="card services-card">
+                <div class="card-content">
+                    <span class="card-title">Nos domaines de compétence</span>
+                    <div class="row">
+                        <div class="col s12 m4" *ngFor="let area of areaOfInterest">
+                            <div class="card competence-card">
+                                <div class="card-image">
+                                    <i class="material-icons">{{ area.icon }}</i>
+                                </div>
+                                <div class="card-content">
+                                    <span class="card-title">{{ area.title }}</span>
+                                    <p class="truncate-lines">{{ area.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+    </div> -->
+
+  <!-- <app-newsletter></app-newsletter> -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col s12 m12">
+        <div class="card partners-card">
+          <div class="card-content">
+            <span class="card-title"
+              >@if (!isEnglish) { Nos partenaires } @else { Our partners }</span
+            >
+            <div class="slider white">
+              <ul class="slides white">
+                <li *ngFor="let partnerGroup of partnerGroups">
+                  <div class="row">
+                    <div
+                      class="col s3 m3 partner"
+                      *ngFor="let partner of partnerGroup"
+                    >
+                      <img [src]="imageUrl + partner.logo" alt="Image" />
+                      <!-- Image from database -->
+                    </div>
+                  </div>
+                  <!-- <img [src]="imageUrl + partner.logo" alt=""> Slider image -->
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

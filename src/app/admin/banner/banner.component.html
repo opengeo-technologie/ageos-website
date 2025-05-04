@@ -1,0 +1,114 @@
+<div class="row">
+  <div class="col s12 m12">
+    <a
+      class="waves-effect waves-light btn-small blue-grey"
+      href="/admin/banner/add"
+      ><i class="material-icons left">add_circle</i>Nouvelle banière</a
+    >
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title">Banières</span>
+        <div class="divider"></div>
+        <div>
+          <table class="highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>Titre</th>
+                <th>Sous titre</th>
+                <th>Est-actif?</th>
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody class="center" *ngIf="!isLoading">
+              <tr *ngFor="let item of paginatedData">
+                <td>{{ item.title }}</td>
+                <td [innerHTML]="item.subtitle"></td>
+                <td *ngIf="item.is_active">
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="filled-in"
+                      checked="checked"
+                    />
+                    <span></span>
+                  </label>
+                </td>
+                <td *ngIf="!item.is_active">
+                  <label>
+                    <input type="checkbox" class="filled-in" />
+                    <span></span>
+                  </label>
+                </td>
+                <td>
+                  <img
+                    [src]="imageUrl + item.image"
+                    alt=""
+                    class="materialboxed"
+                    style="height: 100px; width: 100%"
+                  />
+                </td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <a
+                      class="waves-effect waves-light btn"
+                      (click)="editBanner(item)"
+                      title="Edit Banières"
+                      ><i class="material-icons">edit</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn teal darken-4"
+                      (click)="detailBanner(item)"
+                      title="Details Banières"
+                      ><i class="material-icons">assignment</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn red darken-4"
+                      title="Delete Banières"
+                      ><i class="material-icons">delete</i></a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="isLoading">
+              <tr>
+                <td class="center" colspan="4">Data loading .......</td>
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="!isLoading && banners.length == 0">
+              <tr>
+                <td class="center" colspan="4">No data available</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <!-- Pagination Controls -->
+          <div class="center">
+            <button
+              (click)="prevPage()"
+              class="btn waves-effect waves-light teal darken-4"
+              [disabled]="currentPage === 1"
+            >
+              Précédent
+            </button>
+            <span
+              class="page-number"
+              style="margin-left: 10px; margin-right: 10px"
+              >{{ currentPage }} / {{ totalPages() }}</span
+            >
+            <button
+              (click)="nextPage()"
+              class="btn waves-effect waves-light teal darken-4"
+              [disabled]="currentPage === totalPages()"
+            >
+              Suivant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

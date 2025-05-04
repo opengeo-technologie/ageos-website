@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision">
+    <img [src]="pageBannerImage" alt="">
+    <div class="centered-text banner-title-bg">
+        <h5 class="white-text">{{ title }}</h5>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-content">
+            <h5 class="center bold"><b>{{ title }}</b></h5>
+            <hr>
+            <div class="row">
+                <div class="col s12 m12 news-details-content">
+                    <h6 class="center"><i><b><u>Date: {{ start_date|date: 'dd-MM-YYYY' }} au {{ end_date|date: 'dd-MM-YYYY' }}</u></b></i> </h6><br><br>
+                    <div class="col s6 m3">
+                        <img [src]="pageBannerImage" alt="">
+                    </div>
+                    <div class="col s6 m9">
+                        <p [innerHTML]="pageContent"></p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <h6 class="center"><i>Gallerie photo</i></h6>
+                <div class="col s122 m12 news-details-content" style="align-items: center;">
+                    <div class="col s6 m3" *ngFor="let item of images">
+                        <img class="materialboxed" [src]="imageUrl + item.image" alt="">
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    
+</div>

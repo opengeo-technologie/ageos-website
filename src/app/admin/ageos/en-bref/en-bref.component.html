@@ -1,0 +1,203 @@
+<div class="row">
+    <div class="card center blue-grey white-text">
+        <span class="card-title"><b>AGEOS en bref</b></span>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card hoverable">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Mot du Directeur Général</span>
+            <div class="divider"></div>
+            <a class="waves-effect waves-light btn-small blue-grey" *ngIf="motDG.length == 0" (click)="addEnBref('dg')" style="margin-top: 2%;"><i class="material-icons left">add_circle</i>Nouveau</a>
+            <a class="waves-effect waves-light btn-small blue-grey disabled-link" *ngIf="motDG.length != 0" (click)="addEnBref('dg')" style="margin-top: 2%;"><i class="material-icons left">add_circle</i>Nouveau</a>
+            <div>
+                <div>
+                    <table class="highlight centered responsive-table">
+                        <thead>
+                          <tr>
+                              <th>Nom Directeur General </th>
+                              <th>Contenu</th>
+                              <th>Est-actif?</th>
+                              <th>Image</th>
+                              <th>Action</th>
+                          </tr>
+                        </thead>
+                
+                        <tbody class="center" *ngIf="!isLoading">
+                          <tr *ngFor="let item of motDG">
+                            <td>{{ item.name }}</td>
+                            <td><p [innerHTML]="item.content" class="truncate-lines"></p></td>
+                            <td *ngIf="item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td *ngIf="!item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td><img [src]="imageUrl + item.image" alt="" class="materialboxed" style="height: 100px; width: 100%;"></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="waves-effect waves-light btn" (click)="editer(item, 'dg')" title="Edit Banières"><i class="material-icons">edit</i></a>
+                                    <a class="waves-effect waves-light btn teal darken-4" (click)="detail(item, 'dg')" title="Details Banières"><i class="material-icons">assignment</i></a>
+                                    <a class="waves-effect waves-light btn red darken-4" title="Delete Banières"><i class="material-icons">delete</i></a>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="isLoading">
+                            <tr>
+                              <td class="center" colspan="5">Data loading .......</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="!isLoading && motDG.length == 0">
+                            <tr>
+                              <td class="center" colspan="5">No data available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card hoverable">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Décret de création</span>
+            <div class="divider"></div>
+            <a class="waves-effect waves-light btn-small blue-grey" *ngIf="decrets.length == 0" (click)="addEnBref('decret')" style="margin-top: 2%;"><i class="material-icons left">add_circle</i>Nouveau</a>
+            <a class="waves-effect waves-light btn-small blue-grey disabled-link" *ngIf="decrets.length != 0" (click)="addEnBref('decret')" style="margin-top: 2%;"><i class="material-icons left">add_circle</i>Nouveau</a>
+            <div>
+                <div>
+                    <table class="highlight centered responsive-table">
+                        <thead>
+                          <tr>
+                              <th>Libelle </th>
+                              <th>Contenu</th>
+                              <th>Est-actif?</th>
+                              <th>Fichier</th>
+                              <th>Action</th>
+                          </tr>
+                        </thead>
+                
+                        <tbody class="center" *ngIf="!isLoading">
+                          <tr *ngFor="let item of decrets">
+                            <td>{{ item.libelle }}</td>
+                            <td><p [innerHTML]="item.content" class="truncate-lines"></p></td>
+                            <td *ngIf="item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td *ngIf="!item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td><a href="" class="btn-small orange"><i class="material-icons">file_download</i></a></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="waves-effect waves-light btn" (click)="editer(item, 'decret')" title="Edit Banières"><i class="material-icons">edit</i></a>
+                                    <a class="waves-effect waves-light btn teal darken-4" (click)="detail(item, 'decret')" title="Details Banières"><i class="material-icons">assignment</i></a>
+                                    <a class="waves-effect waves-light btn red darken-4" title="Delete Banières"><i class="material-icons">delete</i></a>
+                                </div>
+                                
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="isLoading">
+                            <tr>
+                              <td class="center" colspan="6">Data loading .......</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="!isLoading && motDG.length == 0">
+                            <tr>
+                              <td class="center" colspan="6">No data available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card hoverable">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Chiffres clés</span>
+            <div class="divider"></div>
+            <a class="waves-effect waves-light btn-small blue-grey" (click)="addEnBref('chiffre')" style="margin-top: 2%;"><i class="material-icons left">add_circle</i>Nouveau</a>
+            <div>
+                <div>
+                    <table class="highlight responsive-table">
+                        <thead>
+                          <tr>
+                              <th>Libelle </th>
+                              <th>Est-actif?</th>
+                              <th>Action</th>
+                          </tr>
+                        </thead>
+                
+                        <tbody class="center" *ngIf="!isLoading">
+                          <tr *ngFor="let item of keyFigures">
+                            <td>{{ item.libelle }}</td>
+                            <td *ngIf="item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td *ngIf="!item.is_active">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="checked" />
+                                    <span></span>
+                                </label>
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a class="waves-effect waves-light btn" (click)="editer(item, 'chiffre')" title="Edit Banières"><i class="material-icons">edit</i></a>
+                                    <a class="waves-effect waves-light btn teal darken-4" (click)="detail(item, 'chiffre' )" title="Details Banières"><i class="material-icons">assignment</i></a>
+                                    <a class="waves-effect waves-light btn red darken-4" title="Delete Banières"><i class="material-icons">delete</i></a>
+                                </div>
+                                
+                            </td>
+                          </tr>
+                        </tbody>
+                        <tbody *ngIf="isLoading">
+                            <tr>
+                              <td class="center" colspan="3">Data loading .......</td>
+                            </tr>
+                        </tbody>
+
+                        <tbody *ngIf="!isLoading && motDG.length == 0">
+                            <tr>
+                              <td class="center" colspan="3">No data available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

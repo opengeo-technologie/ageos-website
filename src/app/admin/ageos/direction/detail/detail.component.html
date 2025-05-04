@@ -1,0 +1,203 @@
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card hoverable">
+      <div class="card-content">
+        <span class="card-title">Détail Direction</span>
+        <div class="divider"></div>
+        <br /><br />
+        <div *ngIf="direction">
+          <div class="row">
+            <div class="col s4 m2">Libellé :</div>
+            <div class="col s8 m10">
+              <b>{{ direction.name }}</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4 m2">Abbreviation :</div>
+            <div class="col s8 m10">
+              <b>{{ direction.abbreviation }}</b>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s4 m2">Description :</div>
+            <div
+              class="col s8 m10"
+              style="text-align: justify"
+              [innerHTML]="direction.description"
+            ></div>
+          </div>
+          <div class="divider"></div>
+          <h5 class="center">Services</h5>
+          <div class="row">
+            <div class="col s12 m12">
+              <div class="director-btn center">
+                <a (click)="addDirector()">[ Nouveau service ]</a>
+              </div>
+              <table *ngIf="direction.services.length != 0">
+                <tr *ngFor="let item of direction.services">
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.abbreviation }}</td>
+                  <td>
+                    <div class="btn-group" role="group">
+                      <a
+                        class="waves-effect waves-light btn green darken-2"
+                        (click)="edit(direction)"
+                        title="Modifier"
+                        ><i class="material-icons">edit</i></a
+                      >
+                      <a
+                        class="waves-effect waves-light btn red darken-4"
+                        title="Supprimer"
+                        ><i class="material-icons">delete</i></a
+                      >
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <h5 class="center">Directeur</h5>
+          <div class="row" *ngIf="direction.director_in_post">
+            <div class="col s12 m4">
+              <img
+                [src]="imageUrl + direction.director_in_post.picture"
+                style="width: 100%; margin-top: 2px; max-height: 250px"
+                alt=""
+              />
+            </div>
+            <div class="col s12 m8">
+              <div class="row">
+                <div class="col s4 m3"><b>Nom :</b></div>
+                <div class="col s8 m10">
+                  <i>{{ direction.director_in_post.name }}</i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s4 m3"><b>Bibliographie :</b></div>
+                <div class="col s8 m10">
+                  <i [innerHTML]="direction.director_in_post.description"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row director-btn center">
+            <a *ngIf="!direction.director_in_post" (click)="addDirector()"
+              >[ Nouveau directeur ]</a
+            >
+            <a
+              (click)="editDirector(direction.director_in_post)"
+              class="orange-text"
+              *ngIf="direction.director_in_post"
+              >[ Editer directeur ]</a
+            >
+            <a
+              (click)="openModalDelete()"
+              class="red-text"
+              *ngIf="direction.director_in_post"
+              >[ Supprimer directeur ]</a
+            >
+          </div>
+          <!-- <div class="row">
+            <h6 class="center">Image</h6>
+            <div class="divider"></div>
+            <br />
+            <div
+              class="col s6 m3"
+              style="
+                border: 2px solid black;
+                margin: 2px;
+                padding: 2px;
+                max-height: 350px;
+              "
+            >
+              <img
+                [src]="imageUrl + banner.image"
+                style="width: 100%; margin-top: 2px; max-height: 300px"
+                alt=""
+              />
+              <div class="btn-group" style="left: 30%" role="group">
+                <a
+                  class="waves-effect waves-light btn amber darken-2"
+                  (click)="openModalEditImage(banner.id, banner.image)"
+                  title="Modifier image"
+                  ><i class="material-icons">edit</i></a
+                >
+              </div>
+            </div>
+          </div> -->
+          <div class="divider"></div>
+          <div class="row" style="padding-top: 10px">
+            <div class="btn-group" role="group">
+              <a
+                class="waves-effect waves-light btn amber darken-2"
+                title="Retour"
+                href="/admin/directions"
+                ><i class="material-icons">assignment_return</i> Retour</a
+              >
+              <a
+                class="waves-effect waves-light btn green darken-2"
+                (click)="edit(direction)"
+                title="Modifier"
+                ><i class="material-icons">edit</i> Modifier</a
+              >
+              <a
+                class="waves-effect waves-light btn red darken-4"
+                title="Supprimer"
+                ><i class="material-icons">delete</i> Supprimer</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal custom-modal">
+  <div class="modal-content">
+    <p class="center"><b>Choisir une nouvelle image</b></p>
+    <div class="file-field input-field col s12 m3">
+      <div class="btn-small blue-grey">
+        <span>Image </span>
+        <input type="file" id="image" />
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer center">
+    <a
+      class="modal-close waves-effect waves-red red darken-4 white-text btn-flat"
+      >Fermer</a
+    >
+    <a
+      class="waves-effect waves-green green darken-4 white-text btn-flat"
+      (click)="updateImage()"
+      >Valider</a
+    >
+  </div>
+</div>
+
+<!-- Modal delete director -->
+<div id="modal2" class="modal custum-modal">
+  <div class="modal-content">
+    <h6 class="center red-text">
+      Voulez-vous supprimer la donnée du directeur?
+    </h6>
+  </div>
+  <div class="modal-footer center">
+    <a
+      class="modal-close waves-effect waves-red red darken-4 white-text btn-flat"
+      style="margin-right: 10px"
+      >Fermer</a
+    >
+    <a
+      class="waves-effect waves-green green darken-4 white-text btn-flat"
+      (click)="deleteDirector()"
+      >Valider</a
+    >
+  </div>
+</div>

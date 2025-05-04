@@ -1,0 +1,15 @@
+.our-service-card .card-image img {
+    height: 250px !important;
+    width: 100%;
+}
+
+.our-service-card .card-content span {
+    font-weight: bolder;
+    text-align: center;
+    font-size: 20px;
+}
+
+.our-service-card .card-content p {
+    text-align: justify;
+    line-height: 30px;
+}

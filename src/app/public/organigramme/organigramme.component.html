@@ -1,0 +1,168 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision">
+  <img
+    src="../../../assets/images/daniel-brady-QKJTPx9r03E-unsplash.jpg"
+    alt=""
+  />
+  <div class="centered-text banner-title-bg">
+    <h5 class="white-text">
+      @if (!isEnglish) { Organigramme } @else { Organization chart }
+    </h5>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col m12 s12">
+      <div class="col m4 s12">
+        <div class="card">
+          <div class="card-content list-directions">
+            <h5 class="center-align">
+              @if (!isEnglish) { Directions } @else { Departments }
+            </h5>
+            <div class="divider"></div>
+            <ul>
+              <li
+                *ngFor="let item of directions"
+                [ngClass]="{ active: selectedIndex === item.id }"
+                (click)="setActive(item.id)"
+              >
+                {{ item.name }}
+                <i class="material-icons right">chevron_right</i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col m8 s12">
+        <div class="card">
+          <div class="card-content direction">
+            <h5 class="center-align" *ngIf="selectedDirection">
+              @if (!isEnglish) { {{ selectedDirection.name }} } @else {
+              {{ selectedDirection.name_eng }} }
+            </h5>
+            <div class="divider"></div>
+            <div class="director" *ngIf="selectedDirection.director_in_post">
+              <img
+                [src]="imageUrl + selectedDirection.director_in_post.picture"
+                alt=""
+              />
+              <p style="font-size: 13px">
+                @if (!isEnglish) { Directeur } @else { Director }
+              </p>
+              <p style="font-size: 15px">
+                <b>{{ selectedDirection.director_in_post.name }}</b>
+              </p>
+            </div>
+            <div class="row">
+              <div
+                class="col m12 s12 services"
+                *ngFor="let item of selectedServices"
+              >
+                <div class="col m3 s12">
+                  <img [src]="imageUrl + item.banner_image" alt="" />
+                </div>
+                <div class="col m9 s12">
+                  <h6 class="center-align">
+                    @if (!isEnglish) { {{ item.name }} } @else {
+                    {{ item.name_eng }} }
+                  </h6>
+                  <div class="divider"></div>
+                  @if (!isEnglish) {
+                  <p [innerHTML]="item.description"></p>
+                  } @else {
+                  <p [innerHTML]="item.description_eng"></p>
+                  }
+
+                  <a
+                    class="waves-effect waves-light btn-small yellow darken-2"
+                    (click)="moveToService(item)"
+                    ><i class="material-icons left">add</i>@if (!isEnglish) {
+                    Plus d'info... } @else { More info... }</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="tree">
+      <ul>
+        <li>
+          <a href="#">Directeur Général</a>
+          <ul>
+            <li>
+              <a href="#">Directeur Général Adjoint</a>
+              <ul>
+                <li>
+                  <a href="#">Direction des Infrastructures</a>
+                  <ul>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Direction Administrative et Financière</a>
+                  <ul>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Direction des Relations Extérieures</a>
+                  <ul>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#"
+                    >Direction des Applications et Sciences de l'Espace</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                    <li>
+                      <a href="#">Great Grand Child</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->

@@ -1,0 +1,16 @@
+<div class="text-editor">
+    <div class="toolbar">
+      <button class="btn-small grey" (click)="formatText('bold')">Gras</button>
+      <button class="btn-small grey" (click)="formatText('italic')">Italique</button>
+      <button class="btn-small grey" (click)="formatText('underline')">Souligner</button>
+      <!-- <button (click)="setFontSize('small')">Petit</button>
+      <button (click)="setFontSize('large')">Large</button> -->
+    </div>
+  
+    <div
+      class="editor-area"
+      contenteditable="true"
+      [style.fontSize]="fontSize"
+      #editorContent>
+    </div>
+</div>

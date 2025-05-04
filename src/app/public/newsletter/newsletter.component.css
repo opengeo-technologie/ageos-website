@@ -1,0 +1,26 @@
+.newsletter-section {
+    padding: 50px 20px;
+    background-color: #66bb6a;
+    text-align: center;
+}
+.newsletter-header {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.newsletter-description {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+.newsletter-input {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 1.2rem 1.5rem;
+    border: none !important;
+    height: 100%;
+}
+.newsletter-button {
+    font-size: 1.1rem;
+}

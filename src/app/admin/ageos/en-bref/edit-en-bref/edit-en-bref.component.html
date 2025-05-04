@@ -1,0 +1,29 @@
+<div *ngIf="page=='dg'">
+    <div class="row">
+        <div class="card center blue-grey white-text">
+            <h5>Modifier</h5>
+        </div>
+    </div>
+    <app-form-en-bref [page]="page" [motDG]="motDG"></app-form-en-bref>
+    
+</div>
+
+<div *ngIf="page=='decret'">
+    <div class="row">
+        <div class="card center blue-grey white-text">
+            <h5>Modifier decret</h5>
+        </div>
+    </div>
+    <app-form-en-bref [page]="page" [decret]="decret"></app-form-en-bref>
+    
+</div>
+
+<div *ngIf="page=='chiffre'">
+    <div class="row">
+        <div class="card center blue-grey white-text">
+            <h5>Modifier chiffre clé</h5>
+        </div>
+    </div>
+    <app-form-en-bref [page]="page" [chiffre]="chiffre"></app-form-en-bref>
+    
+</div>

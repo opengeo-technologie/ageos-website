@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision" *ngIf="selectedService">
+  <img [src]="imageUrl + selectedService.banner_image" alt="" />
+  <div class="centered-text banner-title-bg">
+    <h5 class="white-text">{{ selectedService.name }}</h5>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col m12 s12">
+      <div class="col m2 s12">
+        <div class="card">
+          <div class="card-content">
+            <div class="chef-service">
+              <img
+                [src]="imageUrl + selectedService.chief_in_post.picture"
+                alt=""
+                width="80%"
+              />
+              <p style="font-size: 13px">Chef de service</p>
+              <p style="font-size: 15px">
+                <b>{{ selectedService.chief_in_post.name }}</b>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col m10 s12">
+        <div class="card">
+          <div class="card-content service-activities">
+            <h5>Activités du service</h5>
+            <div class="divider"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

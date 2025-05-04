@@ -1,0 +1,75 @@
+
+<div class="container-fluid" *ngIf="page=='dg'">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Mot du Directeur Général</span>
+            <div class="divider"></div>
+            <div class="row" style="padding-top: 4%; text-align: justify;" *ngIf="motDG">
+                <div class="col m12 s12">
+                    <div class="col m5 s6">
+                        <img [src]="imageUrl+motDG.image" alt="" style="width: 100%;">
+                    </div>
+                    <div class="col m7 s6">
+                        <h6 class="center"><i>Directeur Général</i> </h6>
+                        <h5 class="center"><b>{{ motDG.name }}</b></h5><br>
+                        <p [innerHTML]="motDG.content"></p><br>
+                    </div>
+                </div>
+                <div class="center">
+                    <button type="button" (click)="editer(motDG)" class="btn-small orange darken-4">Modifier <i class="material-icons right">edit</i></button>
+                    <button type="button" class="btn-small red darken-4">Supprimer <i class="material-icons right">delete</i></button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="page=='decret'">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Décret de création</span>
+            <div class="divider"></div>
+            <div class="row" style="padding-top: 4%; text-align: justify;" *ngIf="decrets">
+                <div class="col m12 s12">
+                    <img [src]="imageUrl+decrets.image" alt="" style="width: 100%;">
+                </div>
+                <div class="center">
+                    <button type="button" (click)="editer(decrets)" class="btn-small orange darken-4">Modifier <i class="material-icons right">edit</i></button>
+                    <button type="button" class="btn-small red darken-4">Supprimer <i class="material-icons right">delete</i></button>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+<div class="container-fluid" *ngIf="page=='chiffre'">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title center-align" style="font-weight: bolder;">Chiffres clés</span>
+            <div class="divider"></div>
+            <div class="row" style="padding-top: 4%; text-align: justify;">
+                <div class="col m12 s12">
+                    <div class="col m4 s6">
+                        <img src="../../../assets/images/Logo-AGEOS2.png" alt="" style="width: 100%; padding-top: 16%;">
+                    </div>
+                    <div class="col m8 s6" style="padding-left: 2%;">
+                        <ul>
+                            <li>{{ keyFuture.libelle }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center">
+                    <button type="button" (click)="editer(keyFuture)" class="btn-small orange darken-4">Modifier <i class="material-icons right">edit</i></button>
+                    <button type="button" class="btn-small red darken-4">Supprimer <i class="material-icons right">delete</i></button>
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

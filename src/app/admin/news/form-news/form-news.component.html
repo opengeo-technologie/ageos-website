@@ -1,0 +1,222 @@
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card hoverable">
+      <form
+        (ngSubmit)="onSubmit()"
+        style="padding: 30px"
+        *ngIf="news"
+        #newsForm="ngForm"
+      >
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Titre"
+              id="title"
+              [(ngModel)]="news.title"
+              name="title"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              class="validate"
+              required
+              #title="ngModel"
+            />
+            <label for="title">Titre en Français</label>
+            <div
+              [hidden]="title.valid || title.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Titre"
+              id="title_eng"
+              [(ngModel)]="news.title_eng"
+              name="title_eng"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              #title="ngModel"
+            />
+            <label for="title_eng">Titre en Anglais</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Date de début"
+              id="start_date"
+              [(ngModel)]="news.start_date"
+              name="start_date"
+              [ngModelOptions]="{ standalone: false }"
+              type="date"
+              class="validate"
+              required
+              #start_date="ngModel"
+            />
+            <label for="start_date">Date de début</label>
+            <div
+              [hidden]="start_date.valid || start_date.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Date de fin"
+              id="end_date"
+              [(ngModel)]="news.end_date"
+              name="end_date"
+              [ngModelOptions]="{ standalone: false }"
+              type="date"
+              class="validate"
+              required
+              #end_date="ngModel"
+            />
+            <label for="end_date">Date de fin</label>
+            <div
+              [hidden]="end_date.valid || end_date.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <!-- <app-text-editor></app-text-editor> -->
+        <div class="row">
+          <div class="col s12 m6">
+            <label for="description">Contenu en Français:</label>
+            <quill-editor
+              class="validate"
+              [(ngModel)]="news.content"
+              [ngModelOptions]="{ standalone: false }"
+              name="content"
+              #content="ngModel"
+            ></quill-editor>
+            <div
+              [hidden]="content.valid || content.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="col s12 m6">
+            <label for="description_eng">Contenu en Anglais:</label>
+            <quill-editor
+              class="validate"
+              [(ngModel)]="news.content_eng"
+              [ngModelOptions]="{ standalone: false }"
+              name="content_eng"
+              #content="ngModel"
+            ></quill-editor>
+          </div>
+        </div>
+
+        <!-- Preview the description -->
+        <!-- <div>
+                  <h3>Preview:</h3>
+                  <div [innerHTML]="news.title"></div>
+                </div> -->
+        <div class="row" *ngIf="isAddForm">
+          <div class="file-field input-field col s12 m3">
+            <div class="btn-small blue-grey">
+              <span>Image 1</span>
+              <input
+                type="file"
+                [(ngModel)]="news.image_1"
+                id="image_1"
+                class="validate"
+                name="image_1"
+                [ngModelOptions]="{ standalone: false }"
+                #image_1="ngModel"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+            <div
+              [hidden]="image_1.valid || image_1.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="file-field input-field col s12 m3">
+            <div class="btn-small blue-grey">
+              <span>Image 2</span>
+              <input
+                type="file"
+                [disabled]="news.image_1 == ''"
+                [(ngModel)]="news.image_2"
+                id="image_2"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+          </div>
+          <div class="file-field input-field col s12 m3">
+            <div class="btn-small blue-grey">
+              <span>Image 3</span>
+              <input
+                type="file"
+                [disabled]="news.image_2 == ''"
+                [(ngModel)]="news.image_3"
+                id="image_3"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+          </div>
+          <div class="file-field input-field col s12 m3">
+            <div class="btn-small blue-grey">
+              <span>Image 4</span>
+              <input
+                type="file"
+                [disabled]="news.image_3 == ''"
+                [(ngModel)]="news.image_4"
+                id="image_4"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="padding-top: 10px">
+          <div class="center" *ngIf="isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="
+                !newsForm.form.valid ||
+                isBlank(news.image_1) ||
+                isBlank(news.content)
+              "
+            >
+              <i class="material-icons">save</i> Enregistrer
+            </button>
+          </div>
+
+          <div class="center" *ngIf="!isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="!newsForm.form.valid || isBlank(news.content)"
+            >
+              <i class="material-icons">save</i> Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

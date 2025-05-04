@@ -1,0 +1,120 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card hoverable">
+            <form (ngSubmit)="onSubmit()" style="padding: 30px;" *ngIf="project" #bannerForm="ngForm">
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                      <input placeholder="Nom du projet" id="title" [(ngModel)]="project.title" name="title" [ngModelOptions]="{standalone: false}" 
+                      type="text" class="validate" required #title="ngModel">
+                      <label for="title">Nom du projet</label>
+                      <div [hidden]="title.valid || title.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                      </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="description">Idée générale du projet:</label>
+                    <quill-editor class="validate" [(ngModel)]="project.description" [ngModelOptions]="{standalone: false}" name="description" #description="ngModel"></quill-editor>
+                    <div [hidden]="description.valid || description.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                    </div>
+                </div>
+                <div class="row" *ngIf="isAddForm">
+                    <div class="file-field input-field col s12 m6">
+                        <div class="btn-small blue-grey">
+                          <span>Logo</span>
+                          <input type="file" [(ngModel)]="project.logo" id="logo" class="validate" name="logo" [ngModelOptions]="{standalone: false}" #image="ngModel">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                        <div [hidden]="image.valid || image.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s12 m6">
+                        <div class="btn-small blue-grey">
+                          <span>Banière</span>
+                          <input type="file" [(ngModel)]="project.banner" id="banner" class="validate" name="banner" [ngModelOptions]="{standalone: false}" #banner="ngModel">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                        <div [hidden]="banner.valid || banner.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                        </div>
+                    </div>
+                </div>
+                <div class="divider" *ngIf="isAddForm"></div>
+                <h5 class="center" *ngIf="isAddForm">Gestion du contenu</h5>
+                <div class="divider" *ngIf="isAddForm"></div>
+                <div *ngIf="isAddForm">
+                    <label for="description">Description:</label>
+                    <quill-editor class="validate" [(ngModel)]="project.content" [ngModelOptions]="{standalone: false}" name="content" #content="ngModel"></quill-editor>
+                    <div [hidden]="content.valid || content.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                    </div>
+                </div>
+                <div class="row" *ngIf="isAddForm">
+                    <div class="file-field input-field col s12 m3">
+                        <div class="btn-small blue-grey">
+                          <span>Image 1</span>
+                          <input type="file" [(ngModel)]="project.image_1" id="image_1" class="validate" name="image_1" [ngModelOptions]="{standalone: false}" #image_1="ngModel">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                        <div [hidden]="image_1.valid || image_1.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s12 m3">
+                        <div class="btn-small blue-grey">
+                          <span>Image 2</span>
+                          <input type="file" [disabled]="project.image_1==''" [(ngModel)]="project.image_2" id="image_2" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s12 m3">
+                        <div class="btn-small blue-grey">
+                          <span>Image 3</span>
+                          <input type="file" [disabled]="project.image_2==''" [(ngModel)]="project.image_3" id="image_3" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                    <div class="file-field input-field col s12 m3">
+                        <div class="btn-small blue-grey">
+                          <span>Image 4</span>
+                          <input type="file" [disabled]="project.image_3==''" [(ngModel)]="project.image_4" id="image_4" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row" style="padding-top: 10px;">
+                  <div class="center" *ngIf="isAddForm">
+                    <button type="submit" class="btn-small green darken-4" style="margin-top: 0 !important; padding-top: 0 !important;"
+                    [disabled]="!bannerForm.form.valid || isBlank(project.logo) || isBlank(project.banner) || isBlank(project.description)"><i class="material-icons">save</i> Enregistrer</button>
+                  </div>
+
+                  <div class="center" *ngIf="!isAddForm">
+                    <button type="submit" class="btn-small green darken-4" style="margin-top: 0 !important; padding-top: 0 !important;"
+                    [disabled]="!bannerForm.form.valid"><i class="material-icons">save</i> Modifier</button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

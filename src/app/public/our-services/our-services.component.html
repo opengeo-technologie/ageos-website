@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision" *ngIf="ourService">
+  <img [src]="imageUrl + ourService.banner_image" alt="" />
+  <div class="centered-text banner-title-bg">
+    @if (!isEnglish) {
+    <h5 class="white-text">{{ ourService.label }}</h5>
+    } @else {
+    <h5 class="white-text">{{ ourService.label_eng }}</h5>
+    }
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="ourService">
+  <div class="row" *ngIf="ourService.contents.length != 0">
+    <div class="col s12 m3" *ngFor="let item of ourService.contents">
+      <div class="card our-service-card">
+        <div class="card-image">
+          <img [src]="imageUrl + item.image" />
+          <a
+            class="btn-floating halfway-fab btn-large waves-effect waves-light green darken-4"
+            (click)="moveToDetails(item, ourService.slug)"
+            ><i class="material-icons">add</i></a
+          >
+        </div>
+        <div class="card-content">
+          <span class="card-title"
+            >@if (!isEnglish) {
+            {{ item.label }}
+            } @else {
+            {{ item.label_eng }}
+            }</span
+          >
+          <hr />
+          @if (!isEnglish) {
+          <p class="truncate-lines" [innerHTML]="item.description"></p>
+          } @else {
+          <p class="truncate-lines" [innerHTML]="item.description_eng"></p>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="ourService.contents.length == 0">
+    <div class="col s12 m12">
+      <div class="card">
+        <div class="card-content">
+          <p class="center red-text">
+            @if (!isEnglish) { Aucune de donnée disponible ... } @else { No data
+            available... }
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

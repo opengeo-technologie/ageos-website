@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision">
+  <img
+    src="../../../assets/images/simon-wilkes-uH5OXBhnSNg-unsplash.jpg"
+    alt=""
+  />
+  <div class="centered-text banner-title-bg">
+    @if (!isEnglish) {
+    <h5 class="white-text">Mot du Directeur Général</h5>
+    } @else {
+    <h5 class="white-text">Word from the General Manager</h5>
+    }
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <!-- <span class="card-title center-align" style="font-weight: bolder"
+        >Mot du Directeur Général</span
+      > -->
+      <div class="divider"></div>
+      <div
+        class="row"
+        style="padding-top: 4%; text-align: justify"
+        *ngIf="motDG.length != 0"
+      >
+        <div class="col m12 s12">
+          <div class="col m5 s6">
+            <img [src]="imageUrl + motDG[0].image" alt="" style="width: 100%" />
+          </div>
+          <div class="col m7 s6">
+            @if (!isEnglish) {
+            <h6 class="center"><i>Directeur Général</i></h6>
+            } @else {
+            <h6 class="center"><i>General Manager</i></h6>
+            }
+            <h5 class="center">
+              <b>{{ motDG[0].name }}</b>
+            </h5>
+            <br />
+            @if (!isEnglish) {
+            <p [innerHTML]="motDG[0].content"></p>
+            } @else {
+            <p [innerHTML]="motDG[0].content_eng"></p>
+            }
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

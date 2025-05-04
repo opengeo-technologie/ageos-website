@@ -1,0 +1,24 @@
+.text-editor {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+  
+.toolbar {
+    margin-bottom: 10px;
+}
+  
+.toolbar button {
+    margin-right: 5px;
+    /* padding: 5px 10px; */
+    cursor: pointer;
+}
+  
+.editor-area {
+    border: 1px solid #ddd;
+    min-height: 200px;
+    padding: 10px;
+}
+  
+.editor-area:focus {
+    outline: none;
+}

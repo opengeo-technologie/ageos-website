@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card hoverable">
+            <form (ngSubmit)="onSubmit()" style="padding: 30px;" *ngIf="partner" #bannerForm="ngForm">
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                      <input placeholder="Nom du partenaire" id="title" [(ngModel)]="partner.name" name="title" [ngModelOptions]="{standalone: false}" 
+                      type="text" class="validate" required #title="ngModel">
+                      <label for="title">Nom du partenaire</label>
+                      <div [hidden]="title.valid || title.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                      <input placeholder="Website" id="title" [(ngModel)]="partner.website" name="website" [ngModelOptions]="{standalone: false}" 
+                      type="text" class="validate" required #website="ngModel">
+                      <label for="title">Website</label>
+                      <div [hidden]="website.valid || website.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                      </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="description">Description:</label>
+                    <quill-editor class="validate" [(ngModel)]="partner.description" [ngModelOptions]="{standalone: false}" name="description" #content="ngModel"></quill-editor>
+                    <div [hidden]="content.valid || content.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                    </div>
+                </div>
+                <div class="row" *ngIf="isAddForm">
+                    <div class="file-field input-field col s12 m12">
+                        <div class="btn-small blue-grey">
+                          <span>Logo</span>
+                          <input type="file" [(ngModel)]="partner.logo" id="image" class="validate" name="logo" [ngModelOptions]="{standalone: false}" #image="ngModel">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                        <div [hidden]="image.valid || image.pristine"
+                            class="red-text accent-1">
+                            Ce champ est obligatoire.
+                        </div>
+                    </div>
+                </div>
+                <div class="divider"></div>
+                <div class="row" style="padding-top: 10px;">
+                  <div class="center" *ngIf="isAddForm">
+                    <button type="submit" class="btn-small green darken-4" style="margin-top: 0 !important; padding-top: 0 !important;"
+                    [disabled]="!bannerForm.form.valid || isBlank(partner.logo) "><i class="material-icons">save</i> Enregistrer</button>
+                  </div>
+
+                  <div class="center" *ngIf="!isAddForm">
+                    <button type="submit" class="btn-small green darken-4" style="margin-top: 0 !important; padding-top: 0 !important;"
+                    [disabled]="!bannerForm.form.valid"><i class="material-icons">save</i> Modifier</button>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

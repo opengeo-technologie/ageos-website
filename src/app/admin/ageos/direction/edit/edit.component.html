@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="card center blue-grey white-text">
+    <h5 *ngIf="direction">Modifier direction {{ direction.name }}</h5>
+  </div>
+</div>
+<app-form-direction
+  *ngIf="direction"
+  [direction]="direction"
+></app-form-direction>

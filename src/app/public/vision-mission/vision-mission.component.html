@@ -1,0 +1,142 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision">
+  <img src="../../../assets/images/fondos-pantalla-espacio-header.jpg" alt="" />
+  <div class="centered-text banner-title-bg">
+    @if (!isEnglish) {
+    <h5 class="white-text">AGEOS en bref</h5>
+    } @else {
+    <h5 class="white-text">AGEOS in brief</h5>
+    }
+  </div>
+</div>
+<div class="container">
+  <div class="card" *ngIf="visions.length != 0">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder">
+        @if (!isEnglish) {
+        {{ visions[0].libelle }}
+        } @else {
+        {{ visions[0].libelle_eng }}
+        }</span
+      >
+      <div class="divider"></div>
+      <div class="row" style="padding-top: 4%; text-align: justify">
+        <div class="col m12 s12">
+          <div class="col m3 s6">
+            <img
+              [src]="imageUrl + visions[0].image"
+              alt=""
+              style="width: 100%"
+            />
+          </div>
+          <div class="col m9 s6">
+            @if (!isEnglish) {
+            <p [innerHTML]="visions[0].content"></p>
+            } @else {
+            <p [innerHTML]="visions[0].content_eng"></p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card" *ngIf="missions.length != 0">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder">
+        @if (!isEnglish) {
+        {{ missions[0].libelle }}
+        } @else {
+        {{ missions[0].libelle_eng }}
+        }</span
+      >
+      <div class="divider"></div>
+      <div class="row" style="padding-top: 4%; text-align: justify">
+        <div class="col m12 s12">
+          <div class="col m3 s6">
+            <img
+              [src]="imageUrl + missions[0].image"
+              alt=""
+              style="width: 100%; padding-top: 20%"
+            />
+          </div>
+          <div class="col m9 s6">
+            @if (!isEnglish) {
+            <p [innerHTML]="missions[0].content"></p>
+            } @else {
+            <p [innerHTML]="missions[0].content_eng"></p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder"
+        >@if (!isEnglish) { Décret de création } @else { Creation decree }</span
+      >
+      <div class="divider"></div>
+      <div
+        class="row"
+        style="padding-top: 4%; text-align: justify"
+        *ngIf="decrets.length != 0"
+      >
+        <div class="col m12 s12">
+          <img [src]="imageUrl + decrets[0].image" alt="" style="width: 100%" />
+        </div>
+        <div class="center">
+          <button
+            type="button"
+            *ngIf="decrets[0].file != null"
+            class="btn-small green darken-4"
+          >
+            Télécharger <i class="material-icons right">file_download</i>
+          </button>
+          <button
+            type="button"
+            *ngIf="decrets[0].file == null"
+            class="btn-small green darken-4 disabled-link"
+          >
+            Télécharger <i class="material-icons right">file_download</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder"
+        >@if (!isEnglish) { Chiffres clés } @else { Key figures }</span
+      >
+      <div class="divider"></div>
+      <div class="row" style="padding-top: 4%; text-align: justify">
+        <div class="col m12 s12">
+          <div class="col m4 s6">
+            <img
+              src="../../../assets/images/Logo-AGEOS2.png"
+              alt=""
+              style="width: 100%; padding-top: 16%"
+            />
+          </div>
+          <div class="col m8 s6" style="padding-left: 2%">
+            <ul>
+              <li *ngFor="let item of keyFutures">
+                @if (!isEnglish) { {{ item.libelle }} } @else {
+                {{ item.libelle_eng }} }
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

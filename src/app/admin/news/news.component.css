@@ -1,0 +1,11 @@
+/* Custom modal styles */
+.custom-modal {
+  width: 30%;  /* Adjust the width as needed (you can make it even smaller if desired) */
+  max-height: 70%; /* Adjust the height if necessary */
+}
+
+@media (max-width: 600px) {
+  .custom-modal {
+    width: 80%;  /* Make the modal responsive on smaller screens */
+  }
+}

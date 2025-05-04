@@ -1,0 +1,71 @@
+.services-card {
+    height: auto;
+    /* border-radius: 2rem !important; */
+    /* padding: 2.25rem; */
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: 30px;
+    background: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.services-card .card-title{
+    font-size: 2.25rem;
+    line-height: 1.5;
+    font-weight: 800;
+    text-align: center;
+    color: #1a237e;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.services-card .competence-card {
+    height: 500px;
+    border-radius: 2rem !important;
+    padding: 2.25rem;
+    /* background: #ddddde; */
+    margin-bottom: 0.5rem;
+}
+
+.services-card .competence-card .card-content{
+    min-height: 290px !important;
+}
+
+.services-card .competence-card .material-icons {
+    display: inline-flex;
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    width: 50px;
+    justify-content: center;
+    align-items: center;
+    background: #66bb6a;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.services-card .competence-card .card-content .card-title {
+    font-family: 'Onest', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.5;
+}
+
+.services-card .competence-card .card-content p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    text-align: justify;
+}
+
+.truncate-lines-5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limit to 5 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5em; /* Adjust line height if needed */
+    max-height: calc(1.5em * 4); /* 4 lines */
+}

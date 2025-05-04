@@ -1,0 +1,273 @@
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card hoverable" *ngIf="page == 'mission'">
+      <form
+        (ngSubmit)="onSubmit()"
+        style="padding: 30px"
+        *ngIf="mission"
+        #bannerForm="ngForm"
+      >
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Libelle"
+              id="title"
+              [(ngModel)]="mission.libelle"
+              name="libelle"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              class="validate"
+              required
+              #libelle="ngModel"
+            />
+            <label for="title">Libelle</label>
+            <div
+              [hidden]="libelle.valid || libelle.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Libelle"
+              id="title_eng"
+              [(ngModel)]="mission.libelle_eng"
+              name="libelle_eng"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              class="validate"
+              required
+              #libelle_eng="ngModel"
+            />
+            <label for="title_eng">Libelle en anglais</label>
+            <div
+              [hidden]="libelle.valid || libelle.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="description">Contenu:</label>
+          <quill-editor
+            class="validate"
+            [(ngModel)]="mission.content"
+            [ngModelOptions]="{ standalone: false }"
+            name="content"
+            #content="ngModel"
+          ></quill-editor>
+          <div
+            [hidden]="content.valid || content.pristine"
+            class="red-text accent-1"
+          >
+            Ce champ est obligatoire.
+          </div>
+        </div>
+        <div>
+          <label for="description">Contenu en anglais:</label>
+          <quill-editor
+            class="validate"
+            [(ngModel)]="mission.content_eng"
+            [ngModelOptions]="{ standalone: false }"
+            name="content_eng"
+            #content_eng="ngModel"
+          ></quill-editor>
+          <div
+            [hidden]="content_eng.valid || content_eng.pristine"
+            class="red-text accent-1"
+          >
+            Ce champ est obligatoire.
+          </div>
+        </div>
+        <div class="row">
+          <div class="file-field input-field col s12 m12">
+            <div class="btn-small blue-grey">
+              <span>Image</span>
+              <input
+                type="file"
+                [(ngModel)]="mission.image"
+                id="image"
+                class="validate"
+                name="image"
+                [ngModelOptions]="{ standalone: false }"
+                #image="ngModel"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+            <div
+              [hidden]="image.valid || image.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="padding-top: 10px">
+          <div class="center" *ngIf="isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="
+                !bannerForm.form.valid ||
+                isBlank(mission.image) ||
+                isBlank(mission.content)
+              "
+            >
+              <i class="material-icons">save</i> Enregistrer
+            </button>
+          </div>
+
+          <div class="center" *ngIf="!isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="!bannerForm.form.valid || isBlank(mission.content)"
+            >
+              <i class="material-icons">edit</i> Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="card hoverable" *ngIf="page == 'vision'">
+      <form
+        (ngSubmit)="onSubmit()"
+        style="padding: 30px"
+        *ngIf="vision"
+        #bannerForm="ngForm"
+      >
+        <div class="row">
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Libelle"
+              id="title"
+              [(ngModel)]="vision.libelle"
+              name="libelle"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              class="validate"
+              required
+              #libelle="ngModel"
+            />
+            <label for="title">Libelle</label>
+            <div
+              [hidden]="libelle.valid || libelle.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+          <div class="input-field col s12 m6">
+            <input
+              placeholder="Libelle"
+              id="title_eng"
+              [(ngModel)]="vision.libelle_eng"
+              name="libelle_eng"
+              [ngModelOptions]="{ standalone: false }"
+              type="text"
+              class="validate"
+              required
+              #libelle_eng="ngModel"
+            />
+            <label for="title_eng">Libelle en anglais</label>
+            <div
+              [hidden]="libelle_eng.valid || libelle_eng.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="description">Contenu:</label>
+          <quill-editor
+            class="validate"
+            [(ngModel)]="vision.content"
+            [ngModelOptions]="{ standalone: false }"
+            name="content"
+            #content="ngModel"
+          ></quill-editor>
+          <div
+            [hidden]="content.valid || content.pristine"
+            class="red-text accent-1"
+          >
+            Ce champ est obligatoire.
+          </div>
+        </div>
+        <div>
+          <label for="description">Contenu en anglais:</label>
+          <quill-editor
+            class="validate"
+            [(ngModel)]="vision.content_eng"
+            [ngModelOptions]="{ standalone: false }"
+            name="content_eng"
+            #content_eng="ngModel"
+          ></quill-editor>
+          <div
+            [hidden]="content_eng.valid || content_eng.pristine"
+            class="red-text accent-1"
+          >
+            Ce champ est obligatoire.
+          </div>
+        </div>
+        <div class="row">
+          <div class="file-field input-field col s12 m12">
+            <div class="btn-small blue-grey">
+              <span>Image</span>
+              <input
+                type="file"
+                [(ngModel)]="vision.image"
+                id="image"
+                class="validate"
+                name="image"
+                [ngModelOptions]="{ standalone: false }"
+                #image="ngModel"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+            <div
+              [hidden]="image.valid || image.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="padding-top: 10px">
+          <div class="center" *ngIf="isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="!bannerForm.form.valid || isBlank(vision.content)"
+            >
+              <i class="material-icons">save</i> Enregistrer
+            </button>
+          </div>
+
+          <div class="center" *ngIf="!isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="!bannerForm.form.valid || isBlank(vision.content)"
+            >
+              <i class="material-icons">save</i> Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

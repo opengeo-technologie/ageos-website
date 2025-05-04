@@ -1,13 +1,84 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Frontend</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <title>AGEOS</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="./assets/materialize/css/materialize.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Flag Icons (Optional - Using a CDN for simplicity) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.6.1/css/flag-icon.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body class="grey lighten-3">
+    <app-root></app-root>
+    <script src="./assets/js/jquery3-7-1.js"></script>
+    <script src="./assets/materialize/js/materialize.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!-- <script src="./assets/js/chart.js"></script> -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize the select dropdown
+        const selects = document.querySelectorAll("select");
+        M.FormSelect.init(selects);
+
+        // Handle language change event
+        // document
+        //   .getElementById("language-select")
+        //   .addEventListener("change", function (event) {
+        //     const selectedLang = event.target.value;
+        //     // alert(`Language changed to: ${selectedLang}`);
+        //     // Redirect or trigger language change logic
+        //     // e.g., window.location.href = `?lang=${selectedLang}`;
+        //   });
+      });
+    </script>
+    <script>
+      // Hide Sections
+      $(".section").hide();
+      setTimeout(function () {
+        $(document).ready(function () {
+          // Show sections
+          $(".section").fadeIn();
+
+          // Hide preloader
+          $(".loader").fadeOut();
+
+          // Counter
+          $(".count").each(function () {
+            $(this)
+              .prop("Counter", 0)
+              .animate(
+                {
+                  Counter: $(this).text(),
+                },
+                {
+                  duration: 1000,
+                  easing: "swing",
+                  step: function (now) {
+                    $(this).text(Math.ceil(now));
+                  },
+                }
+              );
+          });
+        });
+      }, 1000);
+    </script>
+  </body>
 </html>

@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision" *ngIf="selectedProject">
+    <img [src]="imageUrl + selectedProject.banner" alt="">
+    <div class="centered-text banner-title-bg">
+        <h5 class="white-text">{{ selectedProject.title }}</h5>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col m12 s12">
+            <div class="col m3 s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="logo-projet">
+                            <img [src]="imageUrl + selectedProject.logo" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col m9 s12">
+                <div class="card">
+                    <div class="card-content projet-description">
+                        <p>{{ selectedProject.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

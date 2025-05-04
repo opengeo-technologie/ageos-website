@@ -1,0 +1,164 @@
+<nav class="navbar-fixed">
+  <div class="nav-wrapper">
+    <div class="container">
+      <a href="#" class="brand-logo">
+        <img src="../../../assets/images/Logo-AGEOS2.png" alt="Logo AGEOS" />
+      </a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+        ><i class="material-icons">menu</i></a
+      >
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li *ngFor="let menu of menus">
+          <ng-container *ngIf="menu.submenus.length === 0">
+            <a [href]="menu.slug">
+              @if (!isEnglish || isBlank(menu.label_eng)) {
+              <b>{{ menu.label }}</b>
+              } @if(isEnglish && !isBlank(menu.label_eng) ) {
+              <b>{{ menu.label_eng }}</b>
+              }
+            </a>
+          </ng-container>
+
+          <!-- Dropdown for submenus -->
+          <ng-container *ngIf="menu.submenus.length > 0">
+            <a
+              class="dropdown-trigger large-screen"
+              [attr.data-target]="'dropdown-' + menu.slug"
+            >
+              @if (!isEnglish || isBlank(menu.label_eng)) {
+              <b>{{ menu.label }}</b>
+              } @if(isEnglish && !isBlank(menu.label_eng) ) {
+              <b>{{ menu.label_eng }}</b>
+              }
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+
+            <!-- Submenu items -->
+            <ul id="{{ 'dropdown-' + menu.slug }}" class="dropdown-content">
+              <li *ngFor="let submenu of menu.submenus">
+                <a
+                  [href]="'service/' + submenu.slug"
+                  *ngIf="menu.label == 'Nos activités'"
+                >
+                  @if (!isEnglish || isBlank(submenu.label_eng)) {
+                  <b>{{ submenu.label }}</b>
+                  } @if(isEnglish && !isBlank(submenu.label_eng) ) {
+                  <b>{{ submenu.label_eng }}</b>
+                  }
+                </a>
+                <a [href]="submenu.slug" *ngIf="menu.label != 'Nos activités'">
+                  @if (!isEnglish || isBlank(submenu.label_eng)) {
+                  <b>{{ submenu.label }}</b>
+                  } @if(isEnglish && !isBlank(submenu.label_eng) ) {
+                  <b>{{ submenu.label_eng }}</b>
+                  }</a
+                >
+              </li>
+            </ul>
+          </ng-container>
+        </li>
+        <li>
+          <div
+            class="input-field language-select"
+            style="margin-right: -200px; margin-left: 100px"
+          >
+            <select id="language-select" (change)="language($event)">
+              <option
+                value="fr"
+                [selected]="!isEnglish"
+                data-icon="https://flagcdn.com/w40/fr.png"
+              >
+                FR
+              </option>
+              <option
+                value="en"
+                [selected]="isEnglish"
+                data-icon="https://flagcdn.com/w40/us.png"
+              >
+                EN
+              </option>
+            </select>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li><a href="#">Accueil</a></li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownAgeos"
+      >AGEOS<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownService"
+      >Services<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownProjet"
+      >Projets<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li>
+    <a
+      class="dropdown-trigger small-screen"
+      href="#"
+      data-target="dropdownMediatheque"
+      >Mediatheque<i class="material-icons right">arrow_drop_down</i></a
+    >
+  </li>
+  <li><a href="#">Contact</a></li>
+</ul>
+
+<!-- Dropdown for AGEOS -->
+<ul id="dropdownAgeos" class="dropdown-content">
+  <li><a href="/ageos">AGEOS en bref</a></li>
+  <li class="divider"></li>
+  <li><a href="/vision-missions">Vision & Missions</a></li>
+  <li class="divider"></li>
+  <li><a href="/directions">Directions</a></li>
+</ul>
+
+<!-- Dropdown for Service -->
+<ul id="dropdownService" class="dropdown-content">
+  <li *ngFor="let item of services">
+    <a (click)="moveToService(item.id)">{{ item.name }}</a>
+  </li>
+</ul>
+
+<!-- Dropdown for Projet -->
+<ul id="dropdownProjet" class="dropdown-content">
+  <li *ngFor="let item of projects">
+    <a (click)="moveToProject(item.id)">{{ item.name }}</a>
+  </li>
+</ul>
+
+<!-- Dropdown for Mediatheque -->
+<ul id="dropdownMediatheque" class="dropdown-content">
+  <li><a href="#!">Bulletins d'Information AGEOS</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Newsletters SCO Gabon</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Vidéos</a></li>
+</ul>
+
+<!-- Dropdown for Languages -->
+<ul id="dropdownLanguage" class="dropdown-content">
+  <li *ngFor="let item of languages">
+    <a href="#!"
+      ><img class="lang-logo" [src]="item.flag" alt="" /> {{ item.name }}</a
+    >
+  </li>
+</ul>

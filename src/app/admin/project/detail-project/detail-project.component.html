@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card hoverable">
+            <div class="card-content">
+                <span class="card-title">Détail projet</span>
+                <div class="divider"></div><br><br>
+                <div *ngIf="project">
+                    <div class="row">
+                        <div class="col s4 m2">Titre : </div>
+                        <div class="col s8 m10"><b>{{ project.title }}</b></div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4 m2">Idée générale : </div>
+                        <div class="col s8 m10" style="text-align: justify;" [innerHTML]="project.description"></div>
+                    </div>
+                    <div class="center" style="padding-bottom: 10px;">
+                        <a class="waves-effect waves-light btn orange darken-2" (click)="contentProject(project)" title="Modifier image"><i class="material-icons">remove_red_eye</i> Visualiser les contenus</a>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row">
+                        <h6 class="center">Image</h6>
+                        <div class="divider"></div><br>
+                        <div class="col s6 m3" style="border: 2px solid black; margin: 2px; padding: 2px; max-height: 350px;">
+                            <img [src]="imageUrl + project.logo" style="width: 100%; margin-top: 2px; max-height: 300px;" alt="">
+                            <div class="btn-group" style="left: 30%;" role="group">
+                                <a class="waves-effect waves-light btn amber darken-2" (click)="openModalEditImage(project.id, project.logo)" title="Modifier image"><i class="material-icons">edit</i></a>
+                            </div>
+                        </div>
+                        <div class="col s6 m3" style="border: 2px solid black; margin: 2px; padding: 2px; max-height: 350px;">
+                            <img [src]="imageUrl + project.banner" style="width: 100%; margin-top: 2px; max-height: 300px;" alt="">
+                            <div class="btn-group" style="left: 30%;" role="group">
+                                <a class="waves-effect waves-light btn amber darken-2" (click)="openModalEditImage(project.id, project.banner)" title="Modifier image"><i class="material-icons">edit</i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="row" style="padding-top: 10px;">
+                        <div class="btn-group" role="group">
+                            <a class="waves-effect waves-light btn amber darken-2" title="Retour" href="/admin/projects"><i class="material-icons">assignment_return</i> Retour</a>
+                            <a class="waves-effect waves-light btn green darken-2" (click)="editProject(project)" title="Modifier"><i class="material-icons">edit</i> Modifier</a>
+                            <a class="waves-effect waves-light btn red darken-4" title="Supprimer"><i class="material-icons">delete</i> Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal custom-modal">
+    <div class="modal-content">
+      <p class="center"><b>Choisir une nouvelle image</b></p>
+        <div class="file-field input-field col s12 m3">
+            <div class="btn-small blue-grey">
+            <span>Image </span>
+                <input type="file" id="image">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer center">
+      <a class="modal-close waves-effect waves-red red darken-4 white-text btn-flat">Fermer</a>
+      <a class="waves-effect waves-green green darken-4 white-text btn-flat" (click)="updateImage()">Valider</a>
+    </div>
+</div>

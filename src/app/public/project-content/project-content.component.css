@@ -1,0 +1,22 @@
+.logo-projet {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.logo-projet img {
+    height: 250px;
+    width: 100%;
+}
+
+.logo-projet h6 {
+    font-weight: bold;
+}
+
+.logo-projet p {
+    font-style: italic;
+}
+
+.projet-description {
+    text-align: justify;
+    line-height: 30px;
+}

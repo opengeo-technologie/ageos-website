@@ -1,0 +1,223 @@
+<div class="row">
+  <div class="card center blue-grey white-text">
+    <span class="card-title"><b>Vision et Mission</b></span>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder"
+        >Vision</span
+      >
+      <div class="divider"></div>
+      <a
+        class="waves-effect waves-light btn-small blue-grey"
+        *ngIf="visions.length == 0"
+        (click)="addVision()"
+        style="margin-top: 2%"
+        ><i class="material-icons left">add_circle</i>Nouveau</a
+      >
+      <a
+        class="waves-effect waves-light btn-small blue-grey disabled-link"
+        *ngIf="visions.length != 0"
+        (click)="addVision()"
+        style="margin-top: 2%"
+        ><i class="material-icons left">add_circle</i>Nouveau</a
+      >
+      <div>
+        <div>
+          <table class="highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>libelle</th>
+                <th>Contenu</th>
+                <th>Est-actif?</th>
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody class="center" *ngIf="!isLoading">
+              <tr *ngFor="let item of visions">
+                <td>{{ item.libelle }}</td>
+                <td>
+                  <p [innerHTML]="item.content" class="truncate-lines"></p>
+                </td>
+                <td *ngIf="item.is_active">
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="filled-in"
+                      checked="checked"
+                    />
+                    <span></span>
+                  </label>
+                </td>
+                <td *ngIf="!item.is_active">
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="filled-in"
+                      checked="checked"
+                    />
+                    <span></span>
+                  </label>
+                </td>
+                <td>
+                  <img
+                    [src]="imageUrl + item.image"
+                    alt=""
+                    class="materialboxed"
+                    style="height: 100px; width: 100%"
+                  />
+                </td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <a
+                      class="waves-effect waves-light btn"
+                      (click)="editer(item, 'vision')"
+                      title="Edit Banières"
+                      ><i class="material-icons">edit</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn teal darken-4"
+                      (click)="detail(item, 'vision')"
+                      title="Details Banières"
+                      ><i class="material-icons">assignment</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn red darken-4"
+                      title="Delete Banières"
+                      ><i class="material-icons">delete</i></a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="isLoading">
+              <tr>
+                <td class="center" colspan="5">Data loading .......</td>
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="!isLoading && visions.length == 0">
+              <tr>
+                <td class="center" colspan="5">No data available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title center-align" style="font-weight: bolder"
+        >Mission</span
+      >
+      <div class="divider"></div>
+      <a
+        class="waves-effect waves-light btn-small blue-grey"
+        *ngIf="missions.length == 0"
+        (click)="addMission()"
+        style="margin-top: 2%"
+        ><i class="material-icons left">add_circle</i>Nouveau</a
+      >
+      <a
+        class="waves-effect waves-light btn-small blue-grey disabled-link"
+        *ngIf="missions.length != 0"
+        (click)="addMission()"
+        style="margin-top: 2%"
+        ><i class="material-icons left">add_circle</i>Nouveau</a
+      >
+      <div>
+        <div>
+          <table class="highlight centered responsive-table">
+            <thead>
+              <tr>
+                <th>libelle</th>
+                <th>Contenu</th>
+                <th>Est-actif?</th>
+                <th>Image</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody class="center" *ngIf="!isLoading">
+              <tr *ngFor="let item of missions">
+                <td>{{ item.libelle }}</td>
+                <td>
+                  <p [innerHTML]="item.content" class="truncate-lines"></p>
+                </td>
+                <td *ngIf="item.is_active">
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="filled-in"
+                      checked="checked"
+                    />
+                    <span></span>
+                  </label>
+                </td>
+                <td *ngIf="!item.is_active">
+                  <label>
+                    <input
+                      type="checkbox"
+                      class="filled-in"
+                      checked="checked"
+                    />
+                    <span></span>
+                  </label>
+                </td>
+                <td>
+                  <img
+                    [src]="imageUrl + item.image"
+                    alt=""
+                    class="materialboxed"
+                    style="height: 100px; width: 100%"
+                  />
+                </td>
+                <td>
+                  <div class="btn-group" role="group">
+                    <a
+                      class="waves-effect waves-light btn"
+                      (click)="editer(item, 'mission')"
+                      title="Edit Banières"
+                      ><i class="material-icons">edit</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn teal darken-4"
+                      (click)="detail(item, 'mission')"
+                      title="Details Banières"
+                      ><i class="material-icons">assignment</i></a
+                    >
+                    <a
+                      class="waves-effect waves-light btn red darken-4"
+                      title="Delete Banières"
+                      ><i class="material-icons">delete</i></a
+                    >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="isLoading">
+              <tr>
+                <td class="center" colspan="5">Data loading .......</td>
+              </tr>
+            </tbody>
+
+            <tbody *ngIf="!isLoading && missions.length == 0">
+              <tr>
+                <td class="center" colspan="5">No data available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

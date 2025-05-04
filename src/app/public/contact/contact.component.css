@@ -1,0 +1,30 @@
+.contact-form-container {
+    /* margin-top: 20px; */
+    /* padding: 20px; */
+    /* background-color: #f9f9f9; */
+    border-radius: 10px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+.input-content {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+.input-field label {
+    color: #022901;
+}
+.input-field input[type=text]:focus + label, 
+.input-field input[type=email]:focus + label, 
+.input-field textarea:focus + label {
+    color: #022901 !important;
+}
+.input-field input[type=text]:focus, 
+.input-field input[type=email]:focus, 
+.input-field textarea:focus {
+    border-bottom: 2px solid #022901 !important;
+    box-shadow: none !important;
+}
+.btn-custom {
+    background-color: #022901;
+    color: white;
+}

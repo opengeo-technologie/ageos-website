@@ -1,0 +1,23 @@
+.list-directions h5 {
+  font-weight: bolder;
+}
+
+.list-directions ul li {
+  border: 1px solid grey;
+  color: black;
+  height: 50px;
+  padding-top: 15px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.list-directions ul li:hover {
+  background-color: rgb(59, 100, 183);
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.list-directions ul .active {
+  background-color: rgb(59, 100, 183);
+  color: #ffffff;
+}

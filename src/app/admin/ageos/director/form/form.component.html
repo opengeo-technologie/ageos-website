@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col s12 m12">
+    <div class="card hoverable">
+      <form
+        (ngSubmit)="onSubmit()"
+        style="padding: 30px"
+        *ngIf="director"
+        #bannerForm="ngForm"
+      >
+        <div class="input-field col s12 m12">
+          <input
+            placeholder="Nom du directeur"
+            id="title"
+            [(ngModel)]="director.name"
+            name="libelle"
+            [ngModelOptions]="{ standalone: false }"
+            type="text"
+            #libelle="ngModel"
+          />
+          <label for="title">Nom du directeur</label>
+        </div>
+        <div class="row">
+          <div class="file-field input-field col s12 m12">
+            <div class="btn-small blue-grey">
+              <span>Image</span>
+              <input
+                type="file"
+                [(ngModel)]="director.image"
+                id="image"
+                class="validate"
+                name="image"
+                [ngModelOptions]="{ standalone: false }"
+                #image="ngModel"
+              />
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" />
+            </div>
+            <div
+              [hidden]="image.valid || image.pristine"
+              class="red-text accent-1"
+            >
+              Ce champ est obligatoire.
+            </div>
+          </div>
+        </div>
+        <div>
+          <label for="description">Bibliographie:</label>
+          <quill-editor
+            class="validate"
+            [(ngModel)]="director.description"
+            [ngModelOptions]="{ standalone: false }"
+            name="content"
+            #content="ngModel"
+          ></quill-editor>
+          <div
+            [hidden]="content.valid || content.pristine"
+            class="red-text accent-1"
+          >
+            Ce champ est obligatoire.
+          </div>
+        </div>
+        <br />
+        <br />
+
+        <div class="divider"></div>
+        <div class="row" style="padding-top: 10px">
+          <div class="center" *ngIf="isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="
+                !bannerForm.form.valid || isBlank(director.description)
+              "
+            >
+              <i class="material-icons">save</i> Enregistrer
+            </button>
+          </div>
+
+          <div class="center" *ngIf="!isAddForm">
+            <button
+              type="submit"
+              class="btn-small green darken-4"
+              style="margin-top: 0 !important; padding-top: 0 !important"
+              [disabled]="
+                !bannerForm.form.valid || isBlank(director.description)
+              "
+            >
+              <i class="material-icons">save</i> Modifier
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="center-align carousel-vision" *ngIf="content">
+  <img [src]="imageUrl + content.image" alt="" />
+  <div class="centered-text banner-title-bg">
+    @if (!isEnglish) {
+    <h5 class="white-text">{{ content.label }}</h5>
+    } @else {
+    <h5 class="white-text">{{ content.label_eng }}</h5>
+    }
+  </div>
+</div>
+
+<div class="row" *ngIf="content">
+  <div class="col s12 m3">
+    <div class="card">
+      <div class="card-content list-directions">
+        <h5 class="center-align">
+          @if (!isEnglish) { {{ activity.label }} } @else {
+          {{ activity.label_eng }} }
+        </h5>
+        <div class="divider"></div>
+        <ul>
+          <li
+            *ngFor="let item of activity.contents"
+            [ngClass]="{ active: selectedIndex === item.id }"
+            (click)="setActive(item.id)"
+          >
+            @if (!isEnglish) { {{ item.label }} } @else { {{ item.label_eng }} }
+
+            <i class="material-icons right">chevron_right</i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m9">
+    <div class="card">
+      <div class="card-content">
+        @if (!isEnglish) {
+        <p [innerHTML]="content.content"></p>
+        } @else {
+        <p [innerHTML]="content.content_eng"></p>
+        }
+      </div>
+    </div>
+  </div>
+</div>
