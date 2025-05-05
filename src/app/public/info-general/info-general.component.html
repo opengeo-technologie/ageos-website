@@ -15,10 +15,26 @@
 
 <div class="container">
   <div class="card">
+    <div class="card-content" *ngIf="motDG.length != 0">
+      <img
+        [src]="imageUrl + motDG[0].image"
+        class="wrap-img responsive-img"
+        alt="sample image"
+      />
+      @if (!isEnglish) {
+      <h6 class="center"><i>Directeur Général</i></h6>
+      } @else {
+      <h6 class="center"><i>General Manager</i></h6>
+      }
+      <h5 class="center">
+        <b>{{ motDG[0].name }}</b>
+      </h5>
+      <br />
+      <div [innerHTML]="motDG[0].content" class="description-content"></div>
+    </div>
+  </div>
+  <!-- <div class="card">
     <div class="card-content">
-      <!-- <span class="card-title center-align" style="font-weight: bolder"
-        >Mot du Directeur Général</span
-      > -->
       <div class="divider"></div>
       <div
         class="row"
@@ -40,7 +56,10 @@
             </h5>
             <br />
             @if (!isEnglish) {
-            <p [innerHTML]="motDG[0].content"></p>
+            <div
+              [innerHTML]="motDG[0].content"
+              style="line-height: 30px; list-style: disc !important"
+            ></div>
             } @else {
             <p [innerHTML]="motDG[0].content_eng"></p>
             }
@@ -49,5 +68,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
