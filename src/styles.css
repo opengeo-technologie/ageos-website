@@ -143,3 +143,11 @@ body {
   list-style: disc;
   display: list-item !important;
 }
+
+.description-content strong {
+  font-weight: bolder !important;
+}
+
+.ql-align-center {
+  text-align: center !important;
+}

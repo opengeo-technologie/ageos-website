@@ -138,11 +138,23 @@
     > -->
   </div>
   <div
-    class="carousel-item white-text red"
+    class="carousel-item white-text white"
     href="#one!"
-    *ngFor="let banner of banners"
+    *ngFor="let banner of banners; let i = index"
+    [ngClass]="{ 'image-loading': loading[i] }"
   >
-    <img [src]="imageUrl + banner.image" alt="Sample Image" />
+    <div class="preloader-wrapper small active" *ngIf="loading[i]">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left"><div class="circle"></div></div>
+        <div class="gap-patch"><div class="circle"></div></div>
+        <div class="circle-clipper right"><div class="circle"></div></div>
+      </div>
+    </div>
+    <img
+      [src]="imageUrl + banner.image"
+      alt="Sample Image"
+      [hidden]="loading[i]"
+    />
     <div class="carousel-caption">
       @if (!isEnglish || isBlank(banner.title_eng)) {
       <h2>{{ banner.title }}</h2>

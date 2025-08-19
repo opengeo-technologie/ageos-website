@@ -24,6 +24,8 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   isEnglish: boolean = false;
   selectedLanguage: string = "";
 
+  loading: boolean[] = [];
+
   news: any[] = [];
   newsGroups: any[][] = [];
 
@@ -80,6 +82,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.loading = this.banners.map(() => true);
     // Initialize the dropdown after the view has been rendered.
     setTimeout(() => {
       this.screenSizeService.screenSize$.subscribe((size) => {

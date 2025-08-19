@@ -61,6 +61,10 @@ import { UserComponent } from "./user/user.component";
 import { AddUserComponent } from "./user/add/add.component";
 import { EditUserComponent } from "./user/edit/edit.component";
 import { authGuard } from "../auth.guard";
+import { ContentComponent } from "./ageos/service/content/content.component";
+import { AddServiceContentComponent } from "./ageos/service/content/add-service-content/add-service-content.component";
+import { EditServiceContentComponent } from "./ageos/service/content/edit-service-content/edit-service-content.component";
+import { DetailServiceContentComponent } from "./ageos/service/content/detail-service-content/detail-service-content.component";
 
 const routes: Routes = [
   {
@@ -195,6 +199,22 @@ const routes: Routes = [
       {
         path: "service/add",
         component: AddServiceComponent,
+      },
+      {
+        path: "service/content/add",
+        component: AddServiceContentComponent,
+      },
+      {
+        path: "service/content/detail/:slug",
+        component: DetailServiceContentComponent,
+      },
+      {
+        path: "service/content/edit/:slug",
+        component: EditServiceContentComponent,
+      },
+      {
+        path: "service/content/:slug",
+        component: ContentComponent,
       },
       {
         path: "chef-service/add",

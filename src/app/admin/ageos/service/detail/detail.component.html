@@ -104,6 +104,7 @@
               <a
                 class="waves-effect waves-light btn red darken-4"
                 title="Supprimer"
+                [class.disabled]="service.content.length != 0"
                 ><i class="material-icons">delete</i> Supprimer</a
               >
             </div>

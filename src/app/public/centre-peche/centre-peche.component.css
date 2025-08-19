@@ -1,0 +1,66 @@
+.main-title {
+  font-size: 30px;
+  font-weight: bolder;
+  border: 2px solid #757575;
+}
+
+.tabbed {
+  text-indent: 2em; /* Adjust to your preferred tab width */
+}
+
+.content {
+  line-height: 35px;
+  text-align: justify;
+  font-size: 16px;
+}
+
+ul {
+  margin-left: 5em;
+}
+
+ul li {
+  line-height: 38px;
+  list-style: circle;
+  font-size: 16px;
+}
+
+.subtitle {
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.list-contents {
+  font-weight: bolder;
+  margin-bottom: -10px;
+}
+
+.mission {
+  border: 2px solid #bdbdbd;
+  padding: 0 10px 0 10px;
+  margin: 10px 0 10px 0;
+}
+
+.mission h6 {
+  font-size: 16px;
+  font-weight: bolder;
+  margin-top: 15px;
+}
+
+.mission .row {
+  margin-bottom: 2px;
+}
+
+.circle-number {
+  width: 30px;
+  height: 30px;
+  background-color: #2196f3; /* Blue background */
+  color: white; /* White text */
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

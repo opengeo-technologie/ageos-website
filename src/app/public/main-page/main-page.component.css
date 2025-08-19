@@ -163,6 +163,13 @@ nav {
   }
 }
 
+.preloader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Main content */
 main {
   margin-top: 10px;

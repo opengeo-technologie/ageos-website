@@ -31,9 +31,12 @@
           </div>
           <div class="col m9 s6">
             @if (!isEnglish) {
-            <p [innerHTML]="visions[0].content"></p>
+            <p class="description-content" [innerHTML]="visions[0].content"></p>
             } @else {
-            <p [innerHTML]="visions[0].content_eng"></p>
+            <p
+              class="description-content"
+              [innerHTML]="visions[0].content_eng"
+            ></p>
             }
           </div>
         </div>
@@ -64,9 +67,15 @@
           </div>
           <div class="col m9 s6">
             @if (!isEnglish) {
-            <p [innerHTML]="missions[0].content"></p>
+            <p
+              class="description-content"
+              [innerHTML]="missions[0].content"
+            ></p>
             } @else {
-            <p [innerHTML]="missions[0].content_eng"></p>
+            <p
+              class="description-content"
+              [innerHTML]="missions[0].content_eng"
+            ></p>
             }
           </div>
         </div>
@@ -127,7 +136,7 @@
               style="width: 100%; padding-top: 16%"
             />
           </div>
-          <div class="col m8 s6" style="padding-left: 2%">
+          <div class="col m8 s6 description-content" style="padding-left: 2%">
             <ul>
               <li *ngFor="let item of keyFutures">
                 @if (!isEnglish) { {{ item.libelle }} } @else {

@@ -7,15 +7,15 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class ApiPublicConnectService {
-  // private url: string = "http://127.0.0.1:8000/api/";
-  // public static imageUrl: string = "http://127.0.0.1:8000";
+  private url: string = "http://127.0.0.1:8000/api/";
+  public static imageUrl: string = "http://127.0.0.1:8000";
   public selectedLanguage: string = "fr";
 
   // private url: string = 'https://ageos-api.kais-consulting.com/api/';
   // public static imageUrl: string = 'https://ageos-api.kais-consulting.com';
 
-  private url: string = "https://ageos.ga/api/";
-  public static imageUrl: string = "https://ageos.ga";
+  // private url: string = "https://ageos.ga/api/";
+  // public static imageUrl: string = "https://ageos.ga";
 
   private headers = new HttpHeaders({
     "Content-Type": "application/json",
@@ -91,5 +91,11 @@ export class ApiPublicConnectService {
 
   getVision(): Observable<any> {
     return this.http.get<any>(`${this.url}vision/`);
+  }
+
+  getServiceContentByService(id_service: number): Observable<any> {
+    return this.http.get<any>(`${this.url}service-content/${id_service}`, {
+      headers: this.headers,
+    });
   }
 }

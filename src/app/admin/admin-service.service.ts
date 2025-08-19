@@ -15,7 +15,7 @@ export class AdminServiceService {
   public static imageUrl: string = "https://ageos.ga";
 
   private headers = new HttpHeaders({
-    // 'Content-Type': 'multipart/form-data',
+    // "Content-Type": "multipart/form-data",
     Authorization: `Bearer ${localStorage.getItem("access")}`,
   });
 
@@ -107,6 +107,18 @@ export class AdminServiceService {
 
   getVision(): Observable<any> {
     return this.http.get<any>(`${this.url}vision/`, { headers: this.headers });
+  }
+
+  getServiceContent(): Observable<any> {
+    return this.http.get<any>(`${this.url}service-content/`, {
+      headers: this.headers,
+    });
+  }
+
+  getServiceContentByService(id_service: number): Observable<any> {
+    return this.http.get<any>(`${this.url}service-content/${id_service}`, {
+      headers: this.headers,
+    });
   }
 
   saveUser(user: any) {
@@ -922,6 +934,92 @@ export class AdminServiceService {
     formData.append("service_id", item.service_id);
 
     return this.http.request("DELETE", `${this.url}services/`, {
+      body: formData,
+    });
+
+    // return this.http.delete<any>(`${this.url}directors/`, formData);
+  }
+
+  saveServiceContent(item: any, images: File[]) {
+    const formData = new FormData();
+    formData.append("content", item.content);
+    formData.append("content_eng", item.content_eng);
+    formData.append("service", item.service.id);
+    for (let index = 0; index < images.length; index++) {
+      let i = index + 1;
+      formData.append("image_" + i, images[index]);
+    }
+
+    return this.http.post<any>(`${this.url}service-content/`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
+  }
+
+  updateServiceContent(item: any) {
+    // console.log(project)
+
+    const formData = new FormData();
+    formData.append("id", item.id);
+    formData.append("content", item.content);
+    formData.append("content_eng", item.content_eng);
+    formData.append("service", item.service.id);
+    // console.log(formData)
+
+    return this.http.put<any>(`${this.url}service-content/`, formData, {
+      headers: this.headers,
+      reportProgress: true,
+      observe: "events",
+    });
+  }
+
+  deleteServiceContent(item: any) {
+    const formData = new FormData();
+
+    formData.append("service_id", item.service_id);
+
+    return this.http.request("DELETE", `${this.url}service-content/`, {
+      body: formData,
+    });
+
+    // return this.http.delete<any>(`${this.url}directors/`, formData);
+  }
+
+  saveUpdateServiceContentImage(item: any, image: File) {
+    // console.log(project)
+
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("service_content", item.service_content_id);
+    // console.log(formData)
+
+    if (item.isAddImage) {
+      return this.http.post<any>(
+        `${this.url}service-content-image/`,
+        formData,
+        {
+          headers: this.headers,
+          reportProgress: true,
+          observe: "events",
+        }
+      );
+    } else {
+      formData.append("id", item.id);
+      return this.http.put<any>(`${this.url}service-content-image/`, formData, {
+        headers: this.headers,
+        reportProgress: true,
+        observe: "events",
+      });
+    }
+  }
+
+  deleteServiceContentImage(item: any) {
+    const formData = new FormData();
+
+    formData.append("image_id", item.image_id);
+
+    return this.http.request("DELETE", `${this.url}service-content-image/`, {
       body: formData,
     });
 

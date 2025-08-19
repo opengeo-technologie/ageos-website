@@ -15,6 +15,7 @@ import { ProjectsComponent } from "./projects/projects.component";
 import { ContactComponent } from "./contact/contact.component";
 import { OurServicesComponent } from "./our-services/our-services.component";
 import { OurServiceContentDetailsComponent } from "./our-service-content-details/our-service-content-details.component";
+import { CentrePecheComponent } from "./centre-peche/centre-peche.component";
 
 const routes: Routes = [
   {
@@ -22,9 +23,17 @@ const routes: Routes = [
     component: LayoutComponent,
     // canActivate:[AuthGuard],
     children: [
-      { path: "", component: MainPageComponent },
-      { path: "ageos-en-bref", component: VisionMissionComponent },
-      { path: "mot-du-dg", component: InfoGeneralComponent },
+      { path: "", component: MainPageComponent, title: "AGEOS - HOME" },
+      {
+        path: "ageos-en-bref",
+        component: VisionMissionComponent,
+        title: "AGEOS - Vision & Mission",
+      },
+      {
+        path: "mot-du-dg",
+        component: InfoGeneralComponent,
+        title: "AGEOS - Mot du DG",
+      },
       { path: "organigramme", component: OrganigrammeComponent },
       {
         path: "services",
@@ -39,6 +48,11 @@ const routes: Routes = [
       {
         path: "project/:slug",
         component: ProjectContentComponent,
+        runGuardsAndResolvers: "paramsChange",
+      },
+      {
+        path: "centre-peche",
+        component: CentrePecheComponent,
         runGuardsAndResolvers: "paramsChange",
       },
       {

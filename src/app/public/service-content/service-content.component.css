@@ -1,21 +1,36 @@
 .chef-service {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 20px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 .chef-service img {
-    height: 150px;
+  height: 150px;
 }
 
 .chef-service h6 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .chef-service p {
-    font-style: italic;
+  font-style: italic;
 }
 
-.service-activities h5{
-    text-align: center;
-    font-weight: bolder;
+.service-activities h5 {
+  text-align: center;
+  font-weight: bolder;
+}
+
+.wrap-img {
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: 100%;
+  shape-outside: circle(50%);
+  shape-margin: 5rem;
+}
+
+.description-content {
+  line-height: 30px;
+  text-align: justify;
 }

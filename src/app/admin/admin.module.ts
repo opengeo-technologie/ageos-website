@@ -79,6 +79,11 @@ import { FormUserComponent } from "./user/form/form.component";
 import { AddUserComponent } from "./user/add/add.component";
 import { EditUserComponent } from "./user/edit/edit.component";
 import { JwtModule } from "@auth0/angular-jwt";
+import { ContentComponent } from "./ageos/service/content/content.component";
+import { EditServiceContentComponent } from "./ageos/service/content/edit-service-content/edit-service-content.component";
+import { AddServiceContentComponent } from "./ageos/service/content/add-service-content/add-service-content.component";
+import { FormServiceContentComponent } from "./ageos/service/content/form-service-content/form-service-content.component";
+import { DetailServiceContentComponent } from "./ageos/service/content/detail-service-content/detail-service-content.component";
 
 // export function tokenGetter() {
 //   return localStorage.getItem("access_token");
@@ -160,6 +165,11 @@ import { JwtModule } from "@auth0/angular-jwt";
     FormUserComponent,
     AddUserComponent,
     EditUserComponent,
+    ContentComponent,
+    AddServiceContentComponent,
+    EditServiceContentComponent,
+    FormServiceContentComponent,
+    DetailServiceContentComponent,
   ],
   imports: [
     CommonModule,

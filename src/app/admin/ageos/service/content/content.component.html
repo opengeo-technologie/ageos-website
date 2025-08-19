@@ -2,38 +2,35 @@
   <div class="col s12 m12">
     <a
       class="waves-effect waves-light btn-small blue-grey"
-      href="/admin/service/add"
-      ><i class="material-icons left">add_circle</i>Nouveau service</a
+      (click)="add()"
+      style="cursor: pointer"
+      ><i class="material-icons left">add_circle</i>Nouveau contenu</a
     >
     <div class="card hoverable">
       <div class="card-content">
-        <span class="card-title">Services</span>
+        <span class="card-title"
+          >Contenus du
+          <b
+            ><i>{{ service.name }}</i></b
+          ></span
+        >
         <div class="divider"></div>
         <div>
           <table class="highlight centered responsive-table">
             <thead>
               <tr>
+                <th>Contenu</th>
                 <th>Service</th>
-                <th>Direction</th>
-                <th>Nom du chef</th>
                 <th>Action</th>
               </tr>
             </thead>
 
-            <tbody class="center" *ngIf="!isLoading">
+            <tbody *ngIf="!isLoading">
               <tr *ngFor="let item of paginatedData">
-                <td>{{ item.name }} ( {{ item.abbreviation }} )</td>
-                <td>{{ item.department.name }}</td>
-                <td *ngIf="item.chief_in_post">
-                  {{ item.chief_in_post.name }}
+                <td>
+                  <p [innerHTML]="item.content" class="truncate-lines"></p>
                 </td>
-                <td *ngIf="!item.chief_in_post">
-                  <i
-                    ><a style="cursor: pointer" (click)="addChief(item)"
-                      >Nouveau Chef de service</a
-                    ></i
-                  >
-                </td>
+                <td>{{ item.service.name }}</td>
                 <td>
                   <div class="btn-group" role="group">
                     <a
@@ -49,15 +46,8 @@
                       ><i class="material-icons">assignment</i></a
                     >
                     <a
-                      class="waves-effect waves-light btn grey darken-4"
-                      (click)="content(item)"
-                      title="Liste des activites"
-                      ><i class="material-icons">format_list_bulleted</i></a
-                    >
-                    <a
                       class="waves-effect waves-light btn red darken-4"
                       (click)="openModalDelete(item)"
-                      [class.disabled]="item.content.length != 0"
                       title="Delete Banières"
                       ><i class="material-icons">delete</i></a
                     >
@@ -109,9 +99,7 @@
 <!-- Modal delete direction -->
 <div id="modal2" class="modal custum-modal">
   <div class="modal-content">
-    <h6 class="center red-text">
-      Voulez-vous supprimer la donnée sur le service?
-    </h6>
+    <h6 class="center red-text">Voulez-vous supprimer le contenu ?</h6>
   </div>
   <div class="modal-footer center">
     <a
@@ -121,7 +109,7 @@
     >
     <a
       class="waves-effect waves-green green darken-4 white-text btn-flat"
-      (click)="deleteService()"
+      (click)="deleteServiceContent()"
       >Valider</a
     >
   </div>

@@ -31,6 +31,34 @@
           <div class="card-content service-activities">
             <h5>Activités du service</h5>
             <div class="divider"></div>
+            <br /><br />
+            <div class="row" *ngFor="let content of contents">
+              <div class="col s12 m12" *ngIf="content.images.length == 0">
+                <p
+                  class="description-content"
+                  [innerHTML]="content.content"
+                ></p>
+              </div>
+              <div class="divider"></div>
+              <div class="col s12 m12" *ngIf="content.images.length != 0">
+                <div>
+                  <div class="col s12 m4">
+                    <img
+                      [src]="imageUrl + content.images[0].image"
+                      class="wrap-img responsive-img"
+                      alt="sample image"
+                    />
+                  </div>
+                  <div class="col s12 m8">
+                    <p
+                      class="description-content"
+                      [innerHTML]="content.content"
+                    ></p>
+                    <br /><br />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
